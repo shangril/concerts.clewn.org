@@ -418,8 +418,8 @@ foreach ($filez as $file){
 
 L.marker([<?php echo floatval($aneventlat);?>, <?php echo floatval($aneventlon);?>]).addTo(map)
     .bindPopup('<?php echo '<a href="./?nod='.floatval($aneventnod).'" title="'
-    .str_replace("'","\'", htmlspecialchars($aneventname)).'">'
-    .str_replace("'","\'", htmlspecialchars($aneventname)).'</a>'; ?>');
+    .str_replace("'","\\'", htmlspecialchars($aneventname)).'">'
+    .str_replace("'","\\'", htmlspecialchars($aneventname)).'</a>'; ?>');
 <?php
 //foreach event : end
 }
