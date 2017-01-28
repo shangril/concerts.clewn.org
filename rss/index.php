@@ -5,7 +5,7 @@ header('Mime-type: application/rss+xml');
 <rss version="2.0">
 <channel>
  <title>Concerts Musique Libre</title>
- <description>Concert annoncements, provided by the Musique Libre nonprofit organisation</description>
+ <description>Concert announcements, provided by the Musique Libre nonprofit organisation</description>
  <link>http://concerts.musique-libre.org</link>
  
 <?php
@@ -25,6 +25,8 @@ foreach ($filez as $file){
   <link>http://concerts.musique-libre.org/?nod=<?php echo floatval($event_guid);?></link>
   <guid isPermaLink="true"><?php echo floatval($event_guid);?></guid>
   <pubDate><?php echo htmlentities($event_date);?></pubDate>
+  <icbm:latitude><?php echo htmlentities($dat['lat']);?></icbm:latitude>
+  <icbm:longitude><?php echo htmlentities($dat['lon']);?></icbm:longitude>
  </item>
 
 <?php
