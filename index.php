@@ -456,7 +456,15 @@ if ($eventcount!==1){
 
 
 
-<form style="display:none;" enctype="multipart/form-data" id="create" action="./?command=post" method="post"><?php echo trans('Event Name: ');?><input type="text" name="event_name" size="40"/><br/>
+<form style="display:none;" enctype="multipart/form-data" id="create" action="./?command=post" method="post"><?php echo trans('Event Name: ');?>
+<input type="text" name="event_name" id="event_name" size="40" 
+<?php
+if (isset($_GET['eventname'])){
+		echo 'value="'.htmlspecialchars($_GET['eventname']).'"';
+}
+
+?>
+/><br/>
 <br/><em style="font-size:110%;"><?php
 
 
@@ -488,6 +496,8 @@ function changeloc(){
 
 	if (isPosting==true){
 		ret+='<input type="hidden" name="isPosting" value="true"/>';
+		ret+='<input type="hidden" name="eventname" id="posteventname" value=""/>';
+
 	}
 
 	ret+='<?php echo str_replace ("'", "\\'", trans('Update your location:')); ?><br/><?php echo str_replace ("'", "\\'", trans('enter city name or address: '));?><br/>';
@@ -501,6 +511,8 @@ function changeloc(){
 	
 	if (isPosting==true){
 		ret+='<input type="hidden" name="isPosting" value="true"/>';
+		ret+='<input type="hidden" name="eventname" id="posteventname" value=""/>';
+
 	}
 	ret+='<?php echo str_replace ("'", "\\'", trans(' -or- Update your location (GPS-style decimals) '))?>';
 	ret+='lat : <input type="text" size="8" name="lat" value="'+lat+'"/>';
@@ -508,6 +520,10 @@ function changeloc(){
 	ret+='<input type="submit"/>';
 	ret+='</form>';
 	document.getElementById('loc').innerHTML=ret;
+	if (isPosting){
+		document.getElementById('posteventname').value=document.getElementById('event_name').value;
+		
+	}
 	
 	
 }
