@@ -1,10 +1,10 @@
 body {
 	padding-left:8%;
 	padding-right:8%;
-    color:#C0C0C0;
-    background-color: #333333;
+    color:#A0A0A0;
+    background-color: #FFFFFF;
     font-family: Helvetica,Arial,sans-serif;
-    background-image: linear-gradient(to right, black, #373737);
+    
 }
 @media screen and (max-width:800px) {
 	body {
@@ -16,15 +16,15 @@ body {
 }
 
 a {
-    color: #ff9d00;
+    color: #6565FF;
     text-decoration:none;
 }
 a:hover {
-	background-color: #333;
+	background-color: #C0C0C0;
 	text-decoration:underline;
 }
 hr {
-    color: #555;
+    color: orange;
     text-decoration:none;
     clear:both;
 }

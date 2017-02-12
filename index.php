@@ -73,6 +73,7 @@ if (isset($_GET['lat'])&&isset($_GET['lon'])){
 	}
 
 if (isset($_GET['city'])){
+	$_SESSION['cityset']=true;
 	$apiurl='http://nominatim.openstreetmap.org/search';
 	if (isset($_SESSION['lang'])){
 		$apiurl.='?accept-language='.urlencode($_SESSION['lang'].'-'.strtoupper($_SESSION['lang']).','.$_SESSION['lang']).'&';
@@ -279,7 +280,10 @@ function trans($message){
 <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+<script>
+var isPosting=false;
 
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="charset" value="utf-8" />
@@ -448,7 +452,9 @@ if ($eventcount!==1){
 <br style="clear;both;"/>
 
 <?php //end of the leaflet map section?>
-<h2 style="text-align:right;"><a style="color:#373737;background-color:#FAFAFA;border-radius:5px;padding:3px;" href="javascript:void()" onclick="document.getElementById('create').style.display='block';document.getElementById('postplace').innerHTML=document.getElementById('town').innerHTML;"><?php echo trans(' Post an event');?></a></h2>
+<h2 style="text-align:right;"><a style="color:#373737;background-color:#909090;border-radius:5px;padding:3px;" href="javascript:void(0);" onclick="document.getElementById('create').style.display='block';document.getElementById('postplace').innerHTML=document.getElementById('town').innerHTML;isPosting=true;"><?php echo trans(' Post an event');?></a></h2>
+
+
 
 <form style="display:none;" enctype="multipart/form-data" id="create" action="./?command=post" method="post"><?php echo trans('Event Name: ');?><input type="text" name="event_name" size="40"/><br/>
 <br/><em style="font-size:110%;"><?php
@@ -461,7 +467,7 @@ echo trans('Event place: ');
 ?>
 <span id="postplace"></span>
 
- <a href="javascript:void(0);" onClick="document.getElementById('create').style.display='none';changeloc();"><?php echo trans('Change');?></a>
+ <a href="javascript:void(0);" onClick="document.getElementById('create').style.display='none';isPosting=true;changeloc();"><?php echo trans('Change');?></a>
 </em><br/>
 <?php echo trans('Picture of the flyer: ');?><input type="file" accept="image/jpeg" name="poster"/><br/>
 <input type="submit" onclick="document.getElementById('create').style.display='none';document.getElementById('uploading').innerHTML='Uploading, please wait...';"/></form>
@@ -475,13 +481,27 @@ function changeloc(){
 	
 	document.getElementById('loc').innerHTML='';
 	var ret='';
-	ret+='<form style="display.inline;" method="get" action="">';
+	ret+='<form style="display.inline;" method="get" action="';
+
+	
+	ret+='">';
+
+	if (isPosting==true){
+		ret+='<input type="hidden" name="isPosting" value="true"/>';
+	}
+
 	ret+='<?php echo str_replace ("'", "\\'", trans('Update your location:')); ?><br/><?php echo str_replace ("'", "\\'", trans('enter city name or address: '));?><br/>';
 	ret+='<input type="text" size="28" name="city" value=""/><br/><span style="font-size:100%">ex: <em>Paris</em> or <em>Bouches-du-Rhône</em> or <em>Rue de la République, Lyon</em></span>';
 	ret+='<br/><input type="submit"/>';
 	ret+='</form>';
 
-	ret+='<br/><form style="display.inline;" method="get" action="">';
+	ret+='<br/><form style="display.inline;" method="get" action="'
+	
+	ret+='">';
+	
+	if (isPosting==true){
+		ret+='<input type="hidden" name="isPosting" value="true"/>';
+	}
 	ret+='<?php echo str_replace ("'", "\\'", trans(' -or- Update your location (GPS-style decimals) '))?>';
 	ret+='lat : <input type="text" size="8" name="lat" value="'+lat+'"/>';
 	ret+='lon : <input type="text" size="8" name="lon" value="'+lon+'"/>';
@@ -495,11 +515,11 @@ function changeloc(){
 </script>
 
  
-		<span id="loc" style="border:solid 1px;border-radius:5px;padding:2px;background-color:#373737;text-align:left;float:left;font-size:118%;"><?php echo trans('Showing concerts near your area: ');?> 
+		<span id="loc" style="border:solid 1px orange;border-radius:5px;padding:2px;color:#909090;background-color:#F0F0F0;text-align:left;float:left;font-size:118%;"><?php echo trans('Showing concerts near your area: ');?> 
 		
 <?php
 if (!file_exists('./e')){
-	mkdir('./e');
+	//mkdir('./e');
 }
 $town='Unknown city';
 if (false&&file_exists('./e/'.$_SESSION['lat'].'-'.$_SESSION['lon'].'.txt')){//cache can no longer be used since we now use dynamic translation
@@ -516,7 +536,7 @@ if (false&&file_exists('./e/'.$_SESSION['lat'].'-'.$_SESSION['lon'].'.txt')){//c
 	}
 	$apiurl.='&lat='.urlencode($_SESSION['lat']);
 	$apiurl.='&lon='.urlencode($_SESSION['lon']);
-	$apiurl.='&zoom=10';
+	$apiurl.='&zoom=18';
 	$apiurl.='&addressdetails=1';
 	$apiurl.='&email=contact@musique-libre.org';
 
@@ -534,15 +554,23 @@ if (false&&file_exists('./e/'.$_SESSION['lat'].'-'.$_SESSION['lon'].'.txt')){//c
 		   $state='';
 		   $country='';
 		   $city = $item->item(0)->getElementsByTagName('city')->item(0)->nodeValue;
-			$hamlet = $item->item(0)->getElementsByTagName('hamlet')->item(0)->nodeValue;
+			$hamlet = $item->item(0)->getElementsByTagName('town')->item(0)->nodeValue;
+			$village = $item->item(0)->getElementsByTagName('village')->item(0)->nodeValue;
 			$state = $item->item(0)->getElementsByTagName('state')->item(0)->nodeValue;
 			$country = $item->item(0)->getElementsByTagName('country')->item(0)->nodeValue;
+			$street = $item->item(0)->getElementsByTagName('road')->item(0)->nodeValue;
 		  
 		  if (isset($hamlet) && $hamlet!==''){
-			  $city=$hamlet;
+		  $city.=' '.$hamlet;
+		 }
+		 if (isset($village) && $village!==''){
+		  $city.=' '.$village;
+		 }
+		  if (!isset($_SESSION['cityset'])){
+			  $street='';
 		  }
-		  $town=$city.', '.$state.', '.$country;
-		  file_put_contents('./e/'.$_SESSION['lat'].'-'.$_SESSION['lon'].'.txt',$town);
+		  $town=$street.' '.$city.', '.$state.', '.$country;
+		  //file_put_contents('./e/'.$_SESSION['lat'].'-'.$_SESSION['lon'].'.txt',$town);
 	}
 }
 echo '<span id="town" style="font-size:125%;">'.htmlspecialchars($town).'</span><br/>';
@@ -553,7 +581,7 @@ echo '<span id="town" style="font-size:125%;">'.htmlspecialchars($town).'</span>
 			<span id="lat"><?php echo htmlspecialchars($_SESSION['lat']);?></span>, 
 			<span id="lon"><?php echo htmlspecialchars($_SESSION['lon']);?></span>
 			</span><br/> 
-			<a href="javascript:void();" id="change_city" onclick="changeloc();"><?php echo trans('Change city');?></a>
+			<a href="javascript:void(0);" id="change_city" onclick="changeloc();"><?php echo trans('Change city');?></a>
 		</span>
 
 		
@@ -653,6 +681,13 @@ else {
 <br/>
 <div>&copy; 2016 <?php echo trans('to current year');?> Association Musique Libre. CNIL: 1208661<br/> <?php echo trans('Any event post is done under the sole responsibility of the individual poster');?>
 </div>
+<script>
+
+<?php if (isset($_GET['isPosting'])){ ?>
+	document.getElementById('create').style.display='block';document.getElementById('postplace').innerHTML=document.getElementById('town').innerHTML;
+	
+<?php } ?>
+</script>
 </body>
 </html><?php
 
