@@ -268,8 +268,8 @@ function trans($message){
 		return ('jusqu\'à l\'année en cours');
 		
 	}
-	if ($message==='Any event post is done under the sole responsibility of the individual poster'){
-		return ('Toute publication d\'un événement est faite sous la seule responsabilité de la personne qui le publie');
+	if ($message==='Any event post is done under the sole responsibility of the individual poster. Flyers image used for informational purpose only and &copy; their respective owners'){
+		return ('Toute publication d\'un événement est faite sous la seule responsabilité de la personne qui le publie. Les images des affichettes sont utilisé à but d\'information uniquement et sont &copy; leur propriétaires respectifs');
 	}
 
 }
@@ -695,7 +695,7 @@ else {
  <a href="./?unset=session"><?php echo trans('Forget my location and number of items displayed');?></a> - <a href="./rss">RSS</a>
 
 <br/>
-<div>&copy; 2017 <?php echo trans('to current year');?> Clewn.org. CNIL: N/A<br/> <?php echo trans('Any event post is done under the sole responsibility of the individual poster');?>
+<div>&copy; 2017 <?php echo trans('to current year');?> Clewn.org. CNIL: N/A<br/> <?php echo trans('Any event post is done under the sole responsibility of the individual poster. Flyers image used for informational purpose only and &copy; their respective owners');?>
 </div>
 
 <?php
