@@ -1,9 +1,9 @@
 body {
 	padding-left:8%;
 	padding-right:8%;
-    color:#A0A0A0;
-    background-color: #FFFFFF;
-    font-family: Helvetica,Arial,sans-serif;
+    color:black;
+    background-color: yellow;
+    font-family: cursive;
     
 }
 @media screen and (max-width:800px) {
@@ -16,11 +16,11 @@ body {
 }
 
 a {
-    color: #6565FF;
+    color: grey;
     text-decoration:none;
 }
 a:hover {
-	background-color: #C0C0C0;
+	background-color: green;
 	text-decoration:underline;
 }
 hr {
@@ -29,7 +29,7 @@ hr {
     clear:both;
 }
 h3 {
-    color: #101010;
+    color: grey;
 }
 .postimg{
 	width:35%;
@@ -66,7 +66,8 @@ h3 {
 	text-align:center;
 }
 .button {
-	background-color:#101010;
+	background-color:grey;
+	color:yellow;
 	border:solid 1px;
 	text-align:center;
 	margin-top:2%;
