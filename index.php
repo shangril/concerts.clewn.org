@@ -82,7 +82,7 @@ if (isset($_GET['city'])){
 	$apiurl.='&format=xml';
 	$apiurl.='&polygon=1';
 	$apiurl.='&addressdetails=1';
-	$apiurl.='&email=contact@musique-libre.org';
+	$apiurl.='&email=wumzleradio@clewn.org';
 
 	$lon=0;
 	$lat=0;
@@ -150,7 +150,7 @@ if (isset($_GET['emergency_delete'])){
 		$banner=trans('Your post has been deleted.');
 	}
 	else {
-		$banner=trans('There were a problem and your post could not be deleted. Please contact the support as soon as possible at our chatroom, using the link at the top of the page');
+		$banner=trans('There were a problem and your post could not be deleted. Please contact the support as soon as possible by emailing wumzleradio@clewn.org');
 	}
 }
 if (isset($_GET['lang'])){
@@ -166,11 +166,11 @@ function trans($message){
 	
 		return $message;
 	}
-	if ($message==='Event and concert announcements from Musique-Libre.org'){
-		return 'Les annnonces concerts de Musique-Libre.org';
+	if ($message==='Event and concert announcements from Clewn.org'){
+		return 'Les annnonces concerts de Clewn.org';
 	}
-	if ($message==='Event and concert announcements from <a href="http://musique-libre.org">Musique-Libre.org</a>'){
-		return 'Les annnonces concerts de <a href="http://musique-libre.org">Musique-Libre.org</a>';
+	if ($message==='Event and concert announcements from Clewn.org'){
+		return 'Les annnonces concerts de Clewn.org';
 	}
 
 	if ($message===' Post an event'){
@@ -210,11 +210,11 @@ function trans($message){
 	if ($message==='A problem or question? '){
 		return 'Une question, un problème ? ';
 	}
-	if ($message==='Join the nonprofit\'s live chat. '){
-		return 'rejoignez le salon de discussion de l\'asso. ';
+	if ($message==='Please email wumzleradio@clewn.org '){
+		return 'Envoyez un courriel à wumzleradio@clewn.org ';
 	}
-	if ($message==='Non-profit volunteer organisation, editor of the site '){
-		return 'Association à but non lucratif, éditrice du site ';
+	if ($message==='Non-profit project '){
+		return 'Projet non-commercial ';
 	}
 	if ($message==='Sorry, there were an error with your uploaded file'){
 		return ('Désolé, le téléversement de votre fichier a rencontré une erreur');
@@ -240,8 +240,8 @@ function trans($message){
 	if ($message==='Your post has been deleted.'){
 		return ('Votre annonce a été supprimée.');
 	}
-	if ($message==='There were a problem and your post could not be deleted. Please contact the support as soon as possible at our chatroom, using the link at the top of the page'){
-		return ('Il y a eu un problème et votre annonce n\'a pas pu être effacée. Merci de contacter le support dès que possible via le lien vers notre salon de discussion en haut de la page');
+	if ($message==='There were a problem and your post could not be deleted. Please contact the support as soon as possible by emailing wumzleradio@clewn.org'){
+		return ('Il y a eu un problème et votre annonce n\'a pas pu être effacée. Merci de contacter le support dès que possible en envoyant un courriel à wumzleradio@clewn.org');
 	}
 	if ($message==='No more posts currently available. Please note that posts are automatically deleted after 38 days'){
 		return ('Pas d\'autre événement listé. Merci de noter que les événements sont automatiquement effacés après 38 jours');
@@ -298,8 +298,8 @@ td  {
 
 if (isset($_GET['nod'])&&is_numeric($_GET['nod'])){
 
-echo '<title>'.htmlspecialchars($event_name).' - Concerts.musique-libre.org</title>';
-echo '<meta name="description" value="'.htmlspecialchars($event_name).' - Concerts.musique-libre.org - '.trans('Event and concert announcements from Musique-Libre.org').'" />';
+echo '<title>'.htmlspecialchars($event_name).' - Concerts.clewn.org</title>';
+echo '<meta name="description" value="'.htmlspecialchars($event_name).' - Concerts.musique-libre.org - '.trans('Event and concert announcements from Clewn.org').'" />';
 
 ?>
 <meta name="ICBM" content="<?php echo htmlentities($event_lat);?>, <?php echo htmlentities($event_lon);?>"/>
@@ -311,8 +311,8 @@ else {
 ?>
 
 
-<title>Concerts Musique-Libre - <?php echo trans('Event and concert announcements from Musique-Libre.org'); ?></title>
-<meta name="description" value="<?php echo trans('Event and concert announcements from Musique-Libre.org'); ?>" />
+<title>Concerts Musique-Libre - <?php echo trans('Event and concert announcements from Clewn.org'); ?></title>
+<meta name="description" value="<?php echo trans('Event and concert announcements from Clewn.org'); ?>" />
 
 <?php
 
@@ -323,7 +323,7 @@ else {
 </head>
 <body>
 <span style="float:left;font-size:78%;"><a href="./?lang=fr">Français</a> <a href="./?lang=en">English</a></span>
-<span style="float:right;" id="invite"><?php echo trans('A problem or question? '); ?> <a href="http://www.dogmazic.net/irc"><?php echo trans('Join the nonprofit\'s live chat. '); ?></a>
+<span style="float:right;" id="invite"><?php echo trans('A problem or question? '); ?> <?php echo trans('Please email wumzleradio@clewn.org '); ?>
 </span>
 
 
@@ -345,8 +345,8 @@ if ($banner!==''){
 ?>
 
 <h1 style="clear:both;float:none;text-align:center;margin-top:0%;padding-top:0%;"><a href="./">Concerts.musique-libre.org</a></h1>
-<div style="clear:both;text-align:center;"><strong><?php echo trans('Event and concert announcements from <a href="http://musique-libre.org">Musique-Libre.org</a>');?></strong></div>
-<div style="clear:both;text-align:center;"><em><?php echo trans('Non-profit volunteer organisation, editor of the site ');?><a href="http://www.dogmazic.net">Dogmazic.net</a></em></div>
+<div style="clear:both;text-align:center;"><strong><?php echo trans('Event and concert announcements from Clewn.org');?></strong></div>
+<div style="clear:both;text-align:center;"><em><?php echo trans('Non-profit project ');?></em></div>
 
 <?php
 $mapzoom=1;
@@ -695,8 +695,18 @@ else {
  <a href="./?unset=session"><?php echo trans('Forget my location and number of items displayed');?></a> - <a href="./rss">RSS</a>
 
 <br/>
-<div>&copy; 2016 <?php echo trans('to current year');?> Association Musique Libre. CNIL: 1208661<br/> <?php echo trans('Any event post is done under the sole responsibility of the individual poster');?>
+<div>&copy; 2017 <?php echo trans('to current year');?> Clewn.org. CNIL: N/A<br/> <?php echo trans('Any event post is done under the sole responsibility of the individual poster');?>
 </div>
+
+<?php
+echo '<div style="margin:36%;padding-bottom:36%;margin-bottom:36%;"></div>';
+echo '<div style="position:fixed; bottom:0px;background-color:white;">';
+include ('../bank/index.php');
+echo '</div>';
+
+
+
+?>
 <script>
 
 <?php if (isset($_GET['isPosting'])){ ?>
