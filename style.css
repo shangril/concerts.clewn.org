@@ -2,8 +2,8 @@ body {
 	padding-left:8%;
 	padding-right:8%;
     color:black;
-    background-color: yellow;
-    font-family: cursive;
+    background-color: lime;
+    font-family: sans;
     
 }
 @media screen and (max-width:800px) {
