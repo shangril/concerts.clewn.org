@@ -311,7 +311,7 @@ else {
 ?>
 
 
-<title>Concerts Musique-Libre - <?php echo trans('Event and concert announcements from Clewn.org'); ?></title>
+<title>Clewn Concerts - <?php echo trans('Event and concert announcements from Clewn.org'); ?></title>
 <meta name="description" value="<?php echo trans('Event and concert announcements from Clewn.org'); ?>" />
 
 <?php
@@ -554,7 +554,7 @@ if (false&&file_exists('./e/'.$_SESSION['lat'].'-'.$_SESSION['lon'].'.txt')){//c
 	$apiurl.='&lon='.urlencode($_SESSION['lon']);
 	$apiurl.='&zoom=18';
 	$apiurl.='&addressdetails=1';
-	$apiurl.='&email=contact@musique-libre.org';
+	$apiurl.='&email=wumzleradio@clewn.org';
 
 	$apiresult=file_get_contents($apiurl);
 
