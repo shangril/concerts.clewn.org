@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 header('Mime-type: application/rss+xml');
-?><?xml version="1.0" encoding="UTF-8" ?>
+?><?xml version="1.0" encoding="utf-8" ?>
 <rss version="2.0">
 <channel>
  <title>Concerts.clewn.org</title>
@@ -20,8 +20,8 @@ foreach ($filez as $file){
 ?>
  
  <item>
-  <title><?php echo htmlentities($event_name);?></title>
-  <description><?php echo htmlentities($event_name);?></description>
+  <title><![CDATA[<?php echo htmlentities($event_name);?>]]></title>
+  <description><![CDATA[<?php echo htmlentities($event_name);?>]]></description>
   <link>http://concerts.clewn.org/?nod=<?php echo floatval($event_guid);?></link>
   <guid isPermaLink="true"><?php echo floatval($event_guid);?></guid>
   <pubDate><?php echo htmlentities($event_date);?></pubDate>
