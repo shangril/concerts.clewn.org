@@ -299,7 +299,7 @@ td  {
 if (isset($_GET['nod'])&&is_numeric($_GET['nod'])){
 
 echo '<title>'.htmlspecialchars($event_name).' - Concerts.clewn.org</title>';
-echo '<meta name="description" value="'.htmlspecialchars($event_name).' - Concerts.musique-libre.org - '.trans('Event and concert announcements from Clewn.org').'" />';
+echo '<meta name="description" value="'.htmlspecialchars($event_name).' - Concerts.clewn.org - '.trans('Event and concert announcements from Clewn.org').'" />';
 
 ?>
 <meta name="ICBM" content="<?php echo htmlentities($event_lat);?>, <?php echo htmlentities($event_lon);?>"/>
@@ -344,7 +344,7 @@ if ($banner!==''){
 }
 ?>
 
-<h1 style="clear:both;float:none;text-align:center;margin-top:0%;padding-top:0%;"><a href="./">Concerts.musique-libre.org</a></h1>
+<h1 style="clear:both;float:none;text-align:center;margin-top:0%;padding-top:0%;"><a href="./">Concerts.clewn.org</a></h1>
 <div style="clear:both;text-align:center;"><strong><?php echo trans('Event and concert announcements from Clewn.org');?></strong></div>
 <div style="clear:both;text-align:center;"><em><?php echo trans('Non-profit project ');?></em></div>
 
