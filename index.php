@@ -269,7 +269,7 @@ function trans($message){
 		
 	}
 	if ($message==='Any event post is done under the sole responsibility of the individual poster. Flyers image used for informational purpose only and &copy; their respective owners'){
-		return ('Toute publication d\'un événement est faite sous la seule responsabilité de la personne qui le publie. Les images des affichettes sont utilisées à but d\'information uniquement et sont &copy; leur propriétaires respectifs');
+		return ('Toute publication d\'un événement est faite sous la seule responsabilité de la personne qui le publie. Les images des affichettes sont utilisées à but d\'information uniquement et sont &copy; leurs propriétaires respectifs');
 	}
 
 }
